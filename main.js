@@ -2,18 +2,35 @@
 //Sameera Damith (CodeStack)
 //damith.sameera1@gmail.com
 
-const {app, BrowserWindow, webContents, ipcMain, Menu} = require('electron')
+const {app, BrowserWindow, webContents, ipcMain, Menu, protocol} = require('electron')
+const log = require('electron-log'); //Logging
+const {autoUpdater} = require("electron-updater"); //AutoUpdater
 const path = require('path')
 const MainMenuapp = require('./menu-config')
 const RightMenuapp = require('./right-menu-config')
 const appConfig = require('./config')
 
-let mainWindow
+////////////////////////////////////////////////
+/* Logging AutoUpdater */
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
+////////////////////////////////////////////////
+
+let mainWindow;
 
 //Menu
-let mainMenu = Menu.buildFromTemplate(MainMenuapp)
+let mainMenu = Menu.buildFromTemplate(MainMenuapp);
 
-let rightMenu = Menu.buildFromTemplate(RightMenuapp)
+let rightMenu = Menu.buildFromTemplate(RightMenuapp);
+
+////////////////////////////////////////////////
+/* Logging AutoUpdater */
+function sendStatusToWindow(text) {
+  log.info(text);
+  mainWindow.webContents.send('message', text);
+}
+////////////////////////////////////////////////
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -25,6 +42,28 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+
+////////////////////////////////////////////////
+/* AutoUpdater */
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+})
+autoUpdater.on('update-available', (ev, info) => {
+  sendStatusToWindow('Update available.');
+})
+autoUpdater.on('update-not-available', (ev, info) => {
+  sendStatusToWindow('Update not available.');
+})
+autoUpdater.on('error', (ev, err) => {
+  sendStatusToWindow('Error in auto-updater.');
+})
+autoUpdater.on('download-progress', (ev, progressObj) => {
+  sendStatusToWindow('Download progress...');
+})
+autoUpdater.on('update-downloaded', (ev, info) => {
+  sendStatusToWindow('Update downloaded; will install in 5 seconds');
+});
+////////////////////////////////////////////////
 
   //Load Appliaction Main Menu
   Menu.setApplicationMenu(mainMenu) 
@@ -38,7 +77,6 @@ function createWindow () {
   loadWebContent()
 
 }
-
 
 function loadWebContent() {
   //Loading spalsh screen
@@ -87,3 +125,19 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+////////////////////////////////////////////////
+/* AutoUpdater */
+autoUpdater.on('update-downloaded', (ev, info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  setTimeout(function() {
+    autoUpdater.quitAndInstall();  
+  }, 5000)
+})
+
+app.on('ready', function()  {
+  autoUpdater.checkForUpdates();
+});
+////////////////////////////////////////////////
