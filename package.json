@@ -1,0 +1,24 @@
+{
+  "name": "SperoExchange",
+  "version": "1.0.0",
+  "description": "The community-created Exchange.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "DigitalCoinBRL Ativos Digitais",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^12.0.5",
+    "electron-builder": "^22.10.5",
+    "electron-packager": "^15.2.0"
+  },
+  "build": {
+    "mac": {
+      "category": "public.app-category.utilities"
+    }
+  },
+  "dependencies": {
+    "update-electron-app": "^2.0.1"
+  }
+}
