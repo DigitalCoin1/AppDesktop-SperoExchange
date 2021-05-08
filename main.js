@@ -78,6 +78,11 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 
 }
 
+// ======================================
+/*
+* MAIN SCREEN
+*/
+// ======================================
 function loadWebContent() {
   //Loading spalsh screen
   mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
@@ -96,6 +101,236 @@ function loadWebContent() {
     mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
   })
 }
+// ======================================
+/*
+* VOTING SCREEN
+*/
+// ======================================
+function loadVoting() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['votingUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* LISTING POLICY SCREEN
+*/
+// ======================================
+function loadListingPolicy() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['listPolicyUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* DELISTING POLICY SCREEN
+*/
+// ======================================
+function loadDelistingPolicy() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['delistPolicyUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* ASSETS INFO SCREEN
+*/
+// ======================================
+function loadAssetsInfo() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['assetsInfoUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* FEES AND DISCOUNTS SCREEN
+*/
+// ======================================
+function loadFeesAndDiscounts() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['feesDiscontsUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* USER AGREEMENT TERM SCREEN
+*/
+// ======================================
+function loadUserAgreeTerms() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['userAgreeTermUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* PRIVACY POLICY SCREEN
+*/
+// ======================================
+function loadPrivacyPolicy() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['privacyPolicyUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* ACCOUNT TYPE SCREEN
+*/
+// ======================================
+function loadAccType() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['accountTypesUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* LBC SCREEN
+*/
+// ======================================
+function loadLBC() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['lbcUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
+// ======================================
+/*
+* API DOCS SCREEN
+*/
+// ======================================
+function loadApiDocs() {
+  //Loading spalsh screen
+  mainWindow.loadFile(path.join(__dirname, 'public/loading.html'))
+
+  //create webContants
+  let wc = mainWindow.webContents
+
+  //suessfull loding page afer dom created
+  wc.once('did-finish-load'  ,  () => {
+    mainWindow.loadURL(appConfig['apiDocsUrl'])
+ })
+
+  //if not loading page redirect error page
+  wc.on('did-fail-load', (error, code)=> {
+    //console.log(code)
+    mainWindow.loadFile(path.join(__dirname, 'public/offline.html'))
+  })
+}
 
 //Check website loading error (offline, page not found or etc.)
 ipcMain.on('online-status-changed', (event, status) => {
@@ -105,7 +340,27 @@ ipcMain.on('online-status-changed', (event, status) => {
 //Load menuItem local pages (About, Home page, etc)
 module.exports = (pageId) => {
   if(pageId === 'home') {
-    loadWebContent()
+    loadWebContent();
+  } else if(pageId === 'voting') {
+    loadVoting();
+  } else if(pageId === 'listpolicy') {
+    loadListingPolicy();
+  } else if(pageId === 'delistpolicy') {
+    loadDelistingPolicy();
+  } else if(pageId === 'assetsinfo') {
+    loadAssetsInfo();
+  } else if(pageId === 'feesanddiscounts') {
+    loadFeesAndDiscounts();
+  } else if(pageId === 'useragreeterm') {
+    loadUserAgreeTerms();
+  } else if(pageId === 'privpolicy') {
+    loadPrivacyPolicy();
+  } else if(pageId === 'acctypes') {
+    loadAccType();
+  } else if(pageId === 'lbc') {
+    loadLBC();
+  } else if(pageId === 'apidocs') {
+    loadApiDocs();
   } else {
     mainWindow.loadFile(path.join(__dirname, `public/${pageId}.html`))
   }
